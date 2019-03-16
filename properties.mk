@@ -158,7 +158,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.iorapd.enable=true \
-    persist.device_config.runtime_native.usap_pool_enabled=true
+    persist.device_config.runtime_native.usap_pool_enabled=true \
+    debug.cpurend.vsync=false
 
 # FRP
 PRODUCT_PROPERTY_OVERRIDES += \
