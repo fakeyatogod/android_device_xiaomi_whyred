@@ -25,7 +25,6 @@
 
 #include "Power.h"
 #include "PowerExt.h"
-#include "disp-power/DisplayLowPower.h"
 
 using aidl::google::hardware::power::impl::pixel::Power;
 using aidl::google::hardware::power::impl::pixel::PowerExt;
@@ -47,8 +46,6 @@ int main() {
     if (!hm) {
         LOG(FATAL) << "Invalid config: " << config_path;
     }
-
-    std::shared_ptr<DisplayLowPower> dlpw = std::make_shared<DisplayLowPower>();
 
     // single thread
     ABinderProcess_setThreadPoolMaxThreadCount(0);
