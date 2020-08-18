@@ -1,5 +1,5 @@
-type hal_fingerprint_prop, property_type;
-type mlipay_prop, property_type;
-type power_prop, property_type;
-type thermal_engine_prop, property_type;
-type dirac_prop, property_type;
+vendor_public_prop(hal_fingerprint_prop)
+vendor_public_prop(mlipay_prop)
+vendor_internal_prop(thermal_engine_prop)
+vendor_internal_prop(power_prop)
+vendor_internal_prop(dirac_prop)
