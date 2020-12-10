@@ -193,7 +193,8 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-service \
     android.hardware.renderscript@1.0-impl \
     android.frameworks.displayservice@1.0 \
-    vendor.display.config@1.1
+    vendor.display.config@2.0 \
+    vendor.display.config@2.0.vendor
 
 # Doze
 PRODUCT_PACKAGES += \
