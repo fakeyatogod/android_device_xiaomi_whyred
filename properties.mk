@@ -91,6 +91,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
+    camera.disable_zsl_mode=1 \
     persist.vendor.camera.preview.ubwc=0 \
     vendor.video.disable.ubwc=1 \
     vidc.enc.dcvs.extra-buff-count=2
