@@ -62,6 +62,8 @@ TARGET_KERNEL_CONFIG := whyred_defconfig
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
+USE_DEVICE_SPECIFIC_DISPLAY := true
+DEVICE_SPECIFIC_DISPLAY_PATH := $(DEVICE_PATH)/qcom-caf/display
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
