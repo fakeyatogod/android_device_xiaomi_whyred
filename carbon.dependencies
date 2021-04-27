@@ -1,0 +1,22 @@
+[
+  {
+    "repository": "CarbonROM/android_kernel_xiaomi_whyred",
+    "target_path": "kernel/xiaomi/whyred"
+  },
+  {
+    "remote": "lineage",
+    "revision": "lineage-18.1",
+    "repository": "LineageOS/android_packages_resources_devicesettings",
+    "target_path": "packages/resources/devicesettings"
+  },
+  {
+    "remote": "lineage",
+    "revision": "lineage-18.1",
+    "repository": "LineageOS/android_vendor_qcom_opensource_fm-commonsys",
+    "target_path": "vendor/qcom/opensource/fm-commonsys"
+  },
+  {
+    "repository": "fakeyatogod/MiuiCamera",
+    "target_path": "vendor/MiuiCamera"
+  }
+]
