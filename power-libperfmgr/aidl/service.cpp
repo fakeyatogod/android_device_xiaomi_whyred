@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.power-service.pixel-libperfmgr"
+#define LOG_TAG "android.hardware.power-service.whyred-libperfmgr"
 
 #include <thread>
 
@@ -39,7 +39,7 @@ int main() {
     const std::string config_path =
             "/vendor/etc/" +
             android::base::GetProperty(kConfigProperty.data(), kConfigDefaultFileName.data());
-    LOG(INFO) << "Pixel Power HAL AIDL Service with Extension is starting with config: "
+    LOG(INFO) << "Whyred Power HAL AIDL Service with Extension is starting with config: "
               << config_path;
 
     // Parse config but do not start the looper
@@ -54,11 +54,11 @@ int main() {
     ABinderProcess_setThreadPoolMaxThreadCount(0);
 
     // core service
-    std::shared_ptr<Power> pw = ndk::SharedRefBase::make<Power>(hm, dlpw);
+    std::shared_ptr<Power> pw = ndk::SharedRefBase::make<Power>(hm);
     ndk::SpAIBinder pwBinder = pw->asBinder();
 
     // extension service
-    std::shared_ptr<PowerExt> pwExt = ndk::SharedRefBase::make<PowerExt>(hm, dlpw);
+    std::shared_ptr<PowerExt> pwExt = ndk::SharedRefBase::make<PowerExt>(hm);
 
     // attach the extension to the same binder we will be registering
     CHECK(STATUS_OK == AIBinder_setExtension(pwBinder.get(), pwExt->asBinder().get()));
@@ -66,18 +66,17 @@ int main() {
     const std::string instance = std::string() + Power::descriptor + "/default";
     binder_status_t status = AServiceManager_addService(pw->asBinder().get(), instance.c_str());
     CHECK(status == STATUS_OK);
-    LOG(INFO) << "Pixel Power HAL AIDL Service with Extension is started.";
+    LOG(INFO) << "Whyred Power HAL AIDL Service with Extension is started.";
 
     std::thread initThread([&]() {
         ::android::base::WaitForProperty(kPowerHalInitProp.data(), "1");
         hm->Start();
-        dlpw->Init();
     });
     initThread.detach();
 
     ABinderProcess_joinThreadPool();
 
     // should not reach
-    LOG(ERROR) << "Pixel Power HAL AIDL Service with Extension just died.";
+    LOG(ERROR) << "Whyred Power HAL AIDL Service with Extension just died.";
     return EXIT_FAILURE;
 }
