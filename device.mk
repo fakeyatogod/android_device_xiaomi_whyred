@@ -211,9 +211,6 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.2 \
     android.hardware.drm@1.2.vendor
 
-PRODUCT_PACKAGES += \
-    android.hardware.broadcastradio@1.0-impl
-
 # FM
 PRODUCT_PACKAGES += \
     FM2 \
