@@ -212,10 +212,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.delta_time.enable=true
 
-# WFD
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    persist.debug.wfd.enable=1
-
 # Set lmkd options
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.config.low_ram=false \
