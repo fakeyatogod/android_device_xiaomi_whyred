@@ -219,3 +219,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.config.low_ram=false \
     ro.lmk.log_stats=true \
     ro.lmk.use_psi=false
+
+# SOC
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.soc.manufacturer=Qualcomm \
+    ro.soc.model=SDM660
