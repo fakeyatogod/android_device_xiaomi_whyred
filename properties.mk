@@ -237,3 +237,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Watchdog
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.hw_timeout_multiplier=3
+
+# System
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.binary_xml=false
