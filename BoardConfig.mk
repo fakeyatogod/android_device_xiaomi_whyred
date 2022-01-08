@@ -130,7 +130,7 @@ BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2018-11-01
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # SELinux
 include device/qcom/sepolicy-legacy-um/SEPolicy.mk
