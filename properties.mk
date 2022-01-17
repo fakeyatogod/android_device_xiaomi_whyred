@@ -226,3 +226,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.soc.manufacturer=Qualcomm \
     ro.soc.model=SDM660
+
+# Watchdog
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.hw_timeout_multiplier=3
