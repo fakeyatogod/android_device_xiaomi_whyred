@@ -154,7 +154,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.disable_scaler=1 \
     vendor.gralloc.enable_fb_ubwc=1 \
     debug.renderengine.backend=threaded \
-    renderthread.skia.reduceopstasksplitting=true
+    renderthread.skia.reduceopstasksplitting=true \
+    iorapd.readahead.enable=true
 
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.iorapd.enable=true \
