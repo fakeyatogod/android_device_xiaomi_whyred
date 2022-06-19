@@ -185,10 +185,6 @@ PRODUCT_PACKAGES += \
     vendor.display.config@2.0 \
     vendor.display.config@2.0.vendor
 
-# Device Settings
-PRODUCT_PACKAGES += \
-    XiaomiParts
-
 # DPM
 PRODUCT_PACKAGES += \
     libshim_dpmframework \
