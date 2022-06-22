@@ -22,9 +22,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk
 # Inherit Carbon vendor configurations
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-# Inherit from custom vendor
-$(call inherit-product, vendor/MiuiCamera/config.mk)
-
 # Inherit from whyred device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
