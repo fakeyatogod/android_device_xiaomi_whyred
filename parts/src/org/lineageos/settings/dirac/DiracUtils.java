@@ -17,7 +17,6 @@
 package org.lineageos.settings.dirac;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.os.SystemClock;
@@ -25,28 +24,29 @@ import android.view.KeyEvent;
 import android.media.session.MediaController;
 import android.media.session.MediaSessionManager;
 import android.media.session.PlaybackState;
+
 import java.lang.IllegalArgumentException;
 import java.util.List;
 
 public final class DiracUtils {
 
-    protected DiracSound mDiracSound;
     private static DiracUtils mInstance;
+    private final Handler mHandler = new Handler();
+    private final Context mContext;
+    private DiracSound mDiracSound;
     private MediaSessionManager mMediaSessionManager;
-    private Handler mHandler = new Handler();
-    private Context mContext;
+
+    public DiracUtils(final Context context) {
+        mContext = context;
+        mMediaSessionManager = (MediaSessionManager) context.getSystemService(Context.MEDIA_SESSION_SERVICE);
+        mDiracSound = new DiracSound(0, 0);
+    }
 
     public static DiracUtils getInstance() {
         if (mInstance == null) {
             throw new IllegalArgumentException("Trying to get instance without initializing!");
         }
         return mInstance;
-    }
-
-    public DiracUtils(final Context context) {
-        mContext = context;
-        mMediaSessionManager = (MediaSessionManager) context.getSystemService(Context.MEDIA_SESSION_SERVICE);
-        mDiracSound = new DiracSound(0, 0);
     }
 
     public void onBootCompleted() {
@@ -56,7 +56,7 @@ public final class DiracUtils {
         mInstance = this;
     }
 
-    protected void refreshPlaybackIfNecessary(){
+    protected void refreshPlaybackIfNecessary() {
         if (mMediaSessionManager == null) {
             mMediaSessionManager = (MediaSessionManager) mContext.getSystemService(Context.MEDIA_SESSION_SERVICE);
         }
@@ -78,30 +78,10 @@ public final class DiracUtils {
         final KeyEvent evUpPause = KeyEvent.changeAction(evDownPause, KeyEvent.ACTION_UP);
         final KeyEvent evDownPlay = new KeyEvent(when, when, KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_PLAY, 0);
         final KeyEvent evUpPlay = KeyEvent.changeAction(evDownPlay, KeyEvent.ACTION_UP);
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                controller.dispatchMediaButtonEvent(evDownPause);
-            }
-        });
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                controller.dispatchMediaButtonEvent(evUpPause);
-            }
-        }, 20);
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                controller.dispatchMediaButtonEvent(evDownPlay);
-            }
-        }, 1000);
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                controller.dispatchMediaButtonEvent(evUpPlay);
-            }
-        }, 1020);
+        mHandler.post(() -> controller.dispatchMediaButtonEvent(evDownPause));
+        mHandler.postDelayed(() -> controller.dispatchMediaButtonEvent(evUpPause), 20);
+        mHandler.postDelayed(() -> controller.dispatchMediaButtonEvent(evDownPlay), 1000);
+        mHandler.postDelayed(() -> controller.dispatchMediaButtonEvent(evUpPlay), 1020);
     }
 
     private int getMediaControllerPlaybackState(MediaController controller) {
@@ -113,6 +93,7 @@ public final class DiracUtils {
         }
         return PlaybackState.STATE_NONE;
     }
+
     protected void setEnabled(boolean enable) {
         mDiracSound.setEnabled(enable);
         mDiracSound.setMusic(enable ? 1 : 0);
@@ -125,14 +106,6 @@ public final class DiracUtils {
         return mDiracSound.getMusic() == 1;
     }
 
-    protected void setLevel(String preset) {
-        String[] level = preset.split("\\s*,\\s*");
-
-        for (int band = 0; band <= level.length - 1; band++) {
-            mDiracSound.setLevel(band, Float.valueOf(level[band]));
-        }
-    }
-
     protected String getLevel() {
         String selected = "";
         for (int band = 0; band <= 6; band++) {
@@ -141,6 +114,14 @@ public final class DiracUtils {
             if (band != 6) selected += ",";
         }
         return selected;
+    }
+
+    protected void setLevel(String preset) {
+        String[] level = preset.split("\\s*,\\s*");
+
+        for (int band = 0; band <= level.length - 1; band++) {
+            mDiracSound.setLevel(band, Float.parseFloat(level[band]));
+        }
     }
 
     protected void setHeadsetType(int paramInt) {

@@ -16,13 +16,8 @@
 
 package org.lineageos.settings.dirac;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-
 import android.widget.Switch;
 
 import androidx.preference.ListPreference;
@@ -42,14 +37,11 @@ public class DiracSettingsFragment extends PreferenceFragment implements
     private static final String PREF_ENABLE = "dirac_enable";
     private static final String PREF_HEADSET = "dirac_headset_pref";
     private static final String PREF_PRESET = "dirac_preset_pref";
-
+    private final Handler mHandler = new Handler();
     private MainSwitchPreference mSwitchBar;
-
     private ListPreference mHeadsetType;
     private ListPreference mPreset;
-
     private DiracUtils mDiracUtils;
-    private Handler mHandler = new Handler();
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -91,14 +83,11 @@ public class DiracSettingsFragment extends PreferenceFragment implements
         mDiracUtils.setEnabled(isChecked);
         if (isChecked) {
             mSwitchBar.setEnabled(false);
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        mSwitchBar.setEnabled(true);
-                        setEnabled(isChecked);
-                    } catch(Exception ignored) {
-                    }
+            mHandler.postDelayed(() -> {
+                try {
+                    mSwitchBar.setEnabled(true);
+                    setEnabled(isChecked);
+                } catch (Exception ignored) {
                 }
             }, 1020);
         } else {
@@ -106,7 +95,7 @@ public class DiracSettingsFragment extends PreferenceFragment implements
         }
     }
 
-    private void setEnabled(boolean enabled){
+    private void setEnabled(boolean enabled) {
         mSwitchBar.setChecked(enabled);
         mHeadsetType.setEnabled(enabled);
         mPreset.setEnabled(enabled);
