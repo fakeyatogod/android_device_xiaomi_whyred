@@ -156,6 +156,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.renderengine.backend=threaded \
     renderthread.skia.reduceopstasksplitting=true
 
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.iorapd.enable=true \
+    persist.device_config.runtime_native.usap_pool_enabled=true
+
 # FRP
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.frp.pst=/dev/block/bootdevice/by-name/frp
