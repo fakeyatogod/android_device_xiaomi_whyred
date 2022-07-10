@@ -158,8 +158,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     iorapd.readahead.enable=true
 
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.iorapd.enable=true \
-    persist.device_config.runtime_native.usap_pool_enabled=true \
     debug.cpurend.vsync=false \
     persist.device_config.runtime_native_boot.iorap_readahead_enable=true
 
