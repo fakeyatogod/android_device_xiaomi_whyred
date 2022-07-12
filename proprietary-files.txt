@@ -290,6 +290,11 @@ vendor/lib/libgcs.so|91e2a7e52bbc076eb3761586bcaf623160612a79
 vendor/lib/libsmwrapper.so|d28c31e4dd25de2eb7d1face701b0f6acf1b1d0e
 
 # Media - from jasmine
+lib/libFileMux.so|79661e6dffc90234ad446641264fd0fa1a3fe6ab
+lib/libmmosal.so|9464733295e192301b2577f52fab720e72c0d152
+lib/libmmparser_lite.so|f4c24fd214acfb32ebbdd1e8ff361c886237f490
+lib/libOmxMux.so|1ad1aa835a3dfb8bfea2a29291f82a173ba6a868
+lib64/libmmosal.so|9ceff2581e86d32bc2795dffb96ebe4bdc88f2f7
 vendor/lib/libAlacSwDec.so|bca4278cb74a63772a0fc369480b5d9814063d9b
 vendor/lib/libApeSwDec.so|d175422c4b2e691dd5f2a3fe0c7dbc978084e838
 vendor/lib/libdsd2pcm.so|df3b8b4f7c209f061fd6c48bf833cb2ad3342791
